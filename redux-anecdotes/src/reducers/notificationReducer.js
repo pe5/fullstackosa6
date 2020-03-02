@@ -13,13 +13,16 @@ const reducer = (state = initialState, action) => {
     }
 }
 
+let t
+
 export const changeNotification = (content, sec) => {
     return async dispatch => {
+        clearTimeout(t)
         dispatch({
             type: 'NEW_NOTIFICATION',
             data: content
         })
-        setTimeout(() => {
+        t = setTimeout(() => {
             dispatch(reset())
           }, sec * 1000)
     }
